@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from '../fbaseConfig';
+import SignInForm from './SignInForm';
 
 const SignUpForm = ({ setUserData }) => {
   const [email, setEmail] = useState('');
@@ -26,7 +27,7 @@ const SignUpForm = ({ setUserData }) => {
 
   return (
     <div className="columns is-mobile my-4 ">
-      <div className="column is-half is-offset-one-quarter">
+      <div className="column is-4 is-offset-2">
         <div className="field">
           <p className="control has-icons-left has-icons-right">
             <input
@@ -65,6 +66,9 @@ const SignUpForm = ({ setUserData }) => {
             </button>
           </p>
         </div>
+      </div>
+      <div className="column is-4 ">
+        <SignInForm />
       </div>
     </div>
   );

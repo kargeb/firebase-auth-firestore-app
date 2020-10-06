@@ -16,8 +16,8 @@ const BottomPanel = () => {
             >
               Check current user
             </button>
-            <span className="subtitle is-3 has-text-centered has-text-white">
-              Current user: {currentUser}
+            <span className="is-size-4 pl-4 has-text-centered has-text-white">
+              Current user: <span className="is-italic pl-4">{currentUser}</span>
             </span>
           </div>
         </div>
