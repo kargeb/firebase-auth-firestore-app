@@ -1,4 +1,5 @@
 import React from 'react';
+import CurrentUser from './auth/CurrentUser';
 
 const Navbar = () => (
   <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -24,7 +25,9 @@ const Navbar = () => (
             <a className="button is-primary">
               <strong>Sign up</strong>
             </a>
-            <a className="button is-light">Log in</a>
+            <a className="button is-light" onClick={CurrentUser}>
+              Log in
+            </a>
           </div>
         </div>
       </div>

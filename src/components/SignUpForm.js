@@ -9,6 +9,7 @@ const SignUpForm = ({ setUserData }) => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((cred) => {
+        console.log('STWORZYLEM UZYTKONIWKA', cred);
         console.log(cred);
       })
       .catch((err) => console.log(err));

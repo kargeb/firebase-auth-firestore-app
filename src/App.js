@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BottomPanel from './components/BottomPanel';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import SignUpForm from './components/SignUpForm';
@@ -13,6 +14,7 @@ function App() {
       <Hero />
       <SignUpForm setUserData={setUserData} />
       <UserDataPanel userData={userData} />
+      <BottomPanel />
     </div>
   );
 }
