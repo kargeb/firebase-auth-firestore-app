@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CurrentUser from './auth/CurrentUser';
 
 const Navbar = () => (
@@ -14,26 +15,29 @@ const Navbar = () => (
         <div className="navbar-item has-text-weight-bold is-size-5 is-vcentered">
           React Firebase Auth
         </div>
-        <a href="/" className="navbar-item ml-6">
+        <Link to="/" className="navbar-item ml-6">
           Home
-        </a>
-        <a href="#" className="navbar-item">
+        </Link>
+        <Link to="/" className="navbar-item">
           User details
-        </a>
-        <a href="#" className="navbar-item">
+        </Link>
+        <Link to="/" className="navbar-item">
           User content
-        </a>
+        </Link>
       </div>
 
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            <a className="button is-primary">
+            <Link to="/signup" className="button is-primary">
               <strong>Sign up</strong>
-            </a>
-            <a className="button is-light" onClick={CurrentUser}>
+            </Link>
+            <Link to="/" className="button is-light" onClick={CurrentUser}>
               Log in
-            </a>
+            </Link>
+            <Link to="/" className="button is-light" onClick={CurrentUser}>
+              Log out
+            </Link>
           </div>
         </div>
       </div>

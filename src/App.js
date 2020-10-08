@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import BottomPanel from './components/BottomPanel';
-import Hero from './components/Hero';
+
+import { auth } from './fbaseConfig';
 import Navbar from './components/Navbar';
-import SignUpForm from './components/SignUpForm';
-import UserDataPanel from './components/UserDataPanel';
+import Dashboard from './components/pages/dashboard/Dashboard';
+import SignUp from './components/pages/signUp/SignUp';
 
 function App() {
-  const [userData, setUserData] = useState({});
+  useEffect(() => {
+    console.log('jestem w useffect');
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log('JEST ZALOGOANY', user);
+      } else {
+        console.log('NIE JEST ZALGOWANY');
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <SignUpForm setUserData={setUserData} />
-      <UserDataPanel userData={userData} />
-      <BottomPanel />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
