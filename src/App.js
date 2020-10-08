@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import BottomPanel from './components/BottomPanel';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';

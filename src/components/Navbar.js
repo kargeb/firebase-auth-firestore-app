@@ -14,9 +14,15 @@ const Navbar = () => (
         <div className="navbar-item has-text-weight-bold is-size-5 is-vcentered">
           React Firebase Auth
         </div>
-        <a className="navbar-item ml-6">Home</a>
-        <a className="navbar-item">User details</a>
-        <a className="navbar-item">User content</a>
+        <a href="/" className="navbar-item ml-6">
+          Home
+        </a>
+        <a href="#" className="navbar-item">
+          User details
+        </a>
+        <a href="#" className="navbar-item">
+          User content
+        </a>
       </div>
 
       <div className="navbar-end">
