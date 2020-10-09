@@ -1,8 +1,10 @@
 import { auth } from '../../fbaseConfig';
 
 export const GetCurrentUser = () => {
-  console.log('auth: ', auth);
-  return auth.currentUser.email;
+  if (auth.currentUser) {
+    return auth.currentUser.email;
+  }
+  return '-there is no user-';
 };
 
 export const createNewUser = (email, password) => {
@@ -23,6 +25,15 @@ export const signInUser = (email, password) => {
       console.log('ZALOGOWAŁEM:', cred);
       console.log(cred);
       return cred;
+    })
+    .catch((err) => console.log(err));
+};
+
+export const logoutUser = () => {
+  auth
+    .signOut()
+    .then(() => {
+      console.log('Wylogowano');
     })
     .catch((err) => console.log(err));
 };

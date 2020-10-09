@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GetCurrentUser } from './auth/authHandlers';
+import { GetCurrentUser } from '../../../auth/authHandlers';
 
 const BottomPanel = () => {
   const [currentUser, setGetCurrentUser] = useState(null);
