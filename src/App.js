@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Dashboard from './components/pages/dashboard/Dashboard';
 import SignUp from './components/pages/signUp/SignUp';
 import SignIn from './components/pages/signIn/SignIn';
+import Hero from './components/Hero';
 
 function App() {
   useEffect(() => {
@@ -23,20 +24,18 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/signin">
-            <SignIn />
-          </Route>
-        </Switch>
-      </div>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          <Dashboard />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+        <Route path="/signin">
+          <SignIn />
+        </Route>
+      </Switch>
     </Router>
   );
 }

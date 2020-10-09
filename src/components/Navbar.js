@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LogOutConfirm from './modals/LogOutConfirm';
 
 const Navbar = () => (
   <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -31,12 +32,16 @@ const Navbar = () => (
             <Link to="/signup" className="button is-primary">
               <strong>Sign up</strong>
             </Link>
+            {/* <LogOutConfirm to="/signin" className="button is-light">
+              Log out
+            </LogOutConfirm> */}
             <Link to="/signin" className="button is-light">
               Log in
             </Link>
-            <Link to="/" className="button is-light">
-              Log out
-            </Link>
+            <LogOutConfirm> Log out </LogOutConfirm>
+            {/* <Link to="/signin" className="button is-light">
+              Log in
+            </Link> */}
           </div>
         </div>
       </div>

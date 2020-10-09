@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div>
       <Hero />
-      <LogOutConfirm />
+
       <UserDataPanel userData={userData} />
       <BottomPanel />
     </div>
