@@ -5,6 +5,7 @@ import { auth } from './fbaseConfig';
 import Navbar from './components/Navbar';
 import Dashboard from './components/pages/dashboard/Dashboard';
 import SignUp from './components/pages/signUp/SignUp';
+import SignIn from './components/pages/signIn/SignIn';
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/signin">
+            <SignIn />
           </Route>
         </Switch>
       </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CurrentUser from './auth/CurrentUser';
 
 const Navbar = () => (
   <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -32,10 +31,10 @@ const Navbar = () => (
             <Link to="/signup" className="button is-primary">
               <strong>Sign up</strong>
             </Link>
-            <Link to="/" className="button is-light" onClick={CurrentUser}>
+            <Link to="/signin" className="button is-light">
               Log in
             </Link>
-            <Link to="/" className="button is-light" onClick={CurrentUser}>
+            <Link to="/" className="button is-light">
               Log out
             </Link>
           </div>

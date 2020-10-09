@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import CurrentUser from './auth/CurrentUser';
+import { GetCurrentUser } from './auth/authHandlers';
 
 const BottomPanel = () => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setGetCurrentUser] = useState(null);
 
   return (
     <section className="section">
@@ -12,7 +12,7 @@ const BottomPanel = () => {
             <button
               type="button"
               className="button is-light"
-              onClick={() => setCurrentUser(CurrentUser)}
+              onClick={() => setGetCurrentUser(GetCurrentUser)}
             >
               Check current user
             </button>

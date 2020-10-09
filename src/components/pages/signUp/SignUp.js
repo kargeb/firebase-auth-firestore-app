@@ -1,16 +1,10 @@
 import React from 'react';
-import { auth } from '../../../fbaseConfig';
+import { createNewUser } from '../../auth/authHandlers';
 import SignUpForm from '../../SignUpForm';
 
 const SignUp = () => {
   const handleForm = (email, password) => {
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((cred) => {
-        console.log('STWORZYLEM UZYTKONIWKA', cred);
-        console.log(cred);
-      })
-      .catch((err) => console.log(err));
+    createNewUser(email, password);
   };
 
   return (
