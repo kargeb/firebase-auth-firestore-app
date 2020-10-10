@@ -12,9 +12,14 @@ export const createNewUser = (email, password) => {
     .createUserWithEmailAndPassword(email, password)
     .then((cred) => {
       console.log('STWORZYLEM UZYTKONIWKA', cred);
-      console.log(cred);
+      // console.log(cred);
       return cred;
     })
+    .then((cred) => {
+      console.log('CRED z REJESTRACJI: ', cred);
+      return db.collection('app-users').doc(cred.user.uid).set({ email: cred.user.email });
+    })
+    .then((data) => console.log('Zarejestrowalismy: ', data))
     .catch((err) => console.log(err));
 };
 
@@ -29,6 +34,8 @@ export const signInUser = (email, password) => {
           .get()
           .then((doc) => {
             console.log('pobralem uzytkoniwka: ', doc.data());
+            console.log('a tutaj jest jego cred.uid: ', cred.user.uid);
+            console.log('a tutaj jest jego cred samo: ', cred);
             return doc.data();
           });
       },

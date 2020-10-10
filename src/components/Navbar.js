@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import LogOutModal from './modals/LogOutModal';
 import { auth } from '../fbaseConfig';
 
-const Navbar = ({ loggedUser }) => (
+const Navbar = ({ loggedUserEmail }) => (
   <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
-    {console.log('Current USER z NAV: ', loggedUser)}
+    {console.log('Current USER z NAV: ', loggedUserEmail)}
     <div className="navbar-brand">
       <a className="navbar-item" href="https://bulma.io">
         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="logo" />
@@ -20,12 +20,12 @@ const Navbar = ({ loggedUser }) => (
         <Link to="/" className="navbar-item ml-6">
           Home
         </Link>
-        {loggedUser && (
+        {loggedUserEmail && (
           <>
-            <Link to="/" className="navbar-item">
+            <Link to="/userdetails" className="navbar-item">
               User details
             </Link>
-            <Link to="/" className="navbar-item">
+            <Link to="/usercontent" className="navbar-item">
               User content
             </Link>
           </>
@@ -35,7 +35,7 @@ const Navbar = ({ loggedUser }) => (
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            {loggedUser ? (
+            {loggedUserEmail ? (
               <LogOutModal> Log out </LogOutModal>
             ) : (
               <>
