@@ -8,6 +8,7 @@ const UserContent = () => {
 
   const [inputValue, setInputValue] = useState('');
   const [userData, setUserData] = useState([]);
+  const [update, setUpdate] = useState(null);
 
   const handleClick = () => {
     console.log('TO WPISANE JEST:', inputValue);
@@ -15,7 +16,8 @@ const UserContent = () => {
       .doc(fromContext.loggedUserId)
       .update({
         entries: mergeArray(inputValue),
-      });
+      })
+      .then(() => setUpdate(update + 1));
     setInputValue('');
   };
 
@@ -25,14 +27,14 @@ const UserContent = () => {
 
       getUserNameAndId(fromContext.loggedUserId).then((cos) => setUserData(cos.entries));
     }
-  }, [fromContext]);
+  }, [fromContext, update]);
 
   return (
     <section className="section">
       {console.log('USER WNTRIESSSSSSS', userData)}
       <div className="container">
         <h1 className="subtitle is-2">user: {fromContext.loggedUserEmail || 'no user'}</h1>
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <label>
             Wpisz co:
             <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
