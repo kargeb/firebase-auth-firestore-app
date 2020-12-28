@@ -44,39 +44,39 @@ function App() {
     </div>
   );
 
-  const AuthenticatedApp = () => (
-    <AuthContext.Provider value={authData}>
-      <Navbar loggedUserEmail={loggedUserEmail} />
-      <SignIn />
-    </AuthContext.Provider>
-  );
+  //   <AuthContext.Provider value={authData}>
+  // <Router>
+  //   <Navbar loggedUserEmail={loggedUserEmail} />
+  //   <Switch>
+  //     <Route exact path="/">
+  //       <Dashboard />
+  //     </Route>
+  //     <Route path="/signup">
+  //       <SignUp />
+  //     </Route>
+  //     <Route path="/signin">
+  //       <SignIn />
+  //     </Route>
+  //     <Route path="/userdetails">
+  //       <UserDetails />
+  //     </Route>
+  //     <Route path="/usercontent">
+  //       <UserContent />
+  //     </Route>
+  //   </Switch>
+  // </Router>
+  // </AuthContext.Provider>
 
   const UnauthenticatedApp = () => (
     <AuthContext.Provider value={authData}>
       <Router>
         <Navbar loggedUserEmail={loggedUserEmail} />
-        <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/signin">
-            <SignIn />
-          </Route>
-          <Route path="/userdetails">
-            <UserDetails />
-          </Route>
-          <Route path="/usercontent">
-            <UserContent />
-          </Route>
-        </Switch>
+        <SignIn />
       </Router>
     </AuthContext.Provider>
   );
 
-  return (
+  const AuthenticatedApp = () => (
     <AuthContext.Provider value={authData}>
       <Router>
         <Navbar loggedUserEmail={loggedUserEmail} />
@@ -100,6 +100,8 @@ function App() {
       </Router>
     </AuthContext.Provider>
   );
+
+  return <div>{auth.currentUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}</div>;
 }
 
 export default App;
