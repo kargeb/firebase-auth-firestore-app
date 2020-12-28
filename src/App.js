@@ -38,42 +38,11 @@ function App() {
     loggedUserId,
   };
 
-  const NonLogin = () => (
-    <div>
-      <p>DUPA</p>
-    </div>
-  );
-
-  //   <AuthContext.Provider value={authData}>
-  // <Router>
-  //   <Navbar loggedUserEmail={loggedUserEmail} />
-  //   <Switch>
-  //     <Route exact path="/">
-  //       <Dashboard />
-  //     </Route>
-  //     <Route path="/signup">
-  //       <SignUp />
-  //     </Route>
-  //     <Route path="/signin">
-  //       <SignIn />
-  //     </Route>
-  //     <Route path="/userdetails">
-  //       <UserDetails />
-  //     </Route>
-  //     <Route path="/usercontent">
-  //       <UserContent />
-  //     </Route>
-  //   </Switch>
-  // </Router>
-  // </AuthContext.Provider>
-
   const UnauthenticatedApp = () => (
-    <AuthContext.Provider value={authData}>
-      <Router>
-        <Navbar loggedUserEmail={loggedUserEmail} />
-        <SignIn />
-      </Router>
-    </AuthContext.Provider>
+    <Router>
+      <Navbar loggedUserEmail={loggedUserEmail} />
+      <SignIn />
+    </Router>
   );
 
   const AuthenticatedApp = () => (
