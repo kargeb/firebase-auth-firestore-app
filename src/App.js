@@ -51,8 +51,6 @@ function App() {
   }, [loggedUser.userId]);
 
   const authData = {
-    // loggedUserEmail,
-    // loggedUserId,
     loggedUser,
     loggedUserContent,
     updateUserContent,
@@ -62,6 +60,7 @@ function App() {
     <Router>
       <Navbar loggedUserEmail={loggedUser.userEmail} />
       <SignIn />
+      <SignUp />
     </Router>
   );
 
