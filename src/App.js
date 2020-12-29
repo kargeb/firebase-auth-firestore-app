@@ -19,6 +19,9 @@ function App() {
   const [loggedUser, setLoggedUser] = useState({ userId: '', userEmail: '' });
   const [loggedUserContent, setLoggedUserContent] = useState([]);
 
+  const updateUserContent = (userID) =>
+    getUserNameAndId(userID).then((data) => setLoggedUserContent(data.entries));
+
   useEffect(() => {
     console.log('jestem w useffect');
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -29,7 +32,8 @@ function App() {
         setLoggedUserId(user.uid);
         setLoggedUser({ userId: user.uid, userEmail: user.email });
         console.log('LOGGEDUSER userID: ', loggedUser.userId);
-        getUserNameAndId(user.uid).then((data) => setLoggedUserContent(data.entries));
+        updateUserContent(user.uid);
+        // getUserNameAndId(user.uid).then((data) => setLoggedUserContent(data.entries));
       } else {
         console.log('NIE JEST ZALGOWANY');
         console.log('USER NIEZALOGOWANY:', user);
@@ -45,6 +49,7 @@ function App() {
     loggedUserEmail,
     loggedUserId,
     loggedUserContent,
+    updateUserContent,
   };
 
   const UnauthenticatedApp = () => (

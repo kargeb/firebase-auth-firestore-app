@@ -17,7 +17,7 @@ const UserContent = () => {
       .update({
         entries: mergeArray(inputValue),
       })
-      .then(() => setUpdate(update + 1));
+      .then(() => fromContext.updateUserContent(fromContext.loggedUserId));
     setInputValue('');
   };
 
