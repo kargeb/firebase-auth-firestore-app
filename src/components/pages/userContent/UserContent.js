@@ -12,28 +12,20 @@ const UserContent = () => {
   const handleClick = () => {
     console.log('TO WPISANE JEST:', inputValue);
     db.collection('app-users')
-      .doc(fromContext.loggedUserId)
+      .doc(fromContext.loggedUser.userId)
       .update({
         entries: mergeArray(inputValue),
       })
-      .then(() => fromContext.updateUserContent(fromContext.loggedUserId));
+      .then(() => fromContext.updateUserContent(fromContext.loggedUser.userId));
     setInputValue('');
   };
-
-  // useEffect(() => {
-  //   if (fromContext.loggedUserId) {
-  //     console.log('UID Z USEFECT------> ', fromContext.loggedUserId);
-
-  //     getUserNameAndId(fromContext.loggedUserId).then((cos) => setUserData(cos.entries));
-  //   }
-  // }, [fromContext, update]);
 
   return (
     <section className="section">
       {console.log('USER WNTRIESSSSSSS', userData)}
       {console.log('DANE Z CONTEXTU USERA: ', fromContext.loggedUserContent)}
       <div className="container">
-        <h1 className="subtitle is-2">user: {fromContext.loggedUserEmail || 'no user'}</h1>
+        <h1 className="subtitle is-2">user: {fromContext.loggedUser.userEmail || 'no user'}</h1>
         <form onSubmit={(e) => e.preventDefault()}>
           <label>
             Wpisz co:

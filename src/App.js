@@ -12,9 +12,6 @@ import UserContent from './components/pages/userContent/UserContent';
 import { getUserNameAndId } from './components/database/firestoreHandlers';
 
 function App() {
-  const [loggedUserEmail, setLoggedUserEmail] = useState(null);
-  const [loggedUserId, setLoggedUserId] = useState(null);
-
   const [loggedUser, setLoggedUser] = useState({ userId: '', userEmail: '' });
   const [loggedUserContent, setLoggedUserContent] = useState([]);
 
@@ -27,17 +24,14 @@ function App() {
       if (user) {
         console.log('JEST ZALOGOANY', user);
         console.log('JEST ZALOGOANY', user.uid);
-        setLoggedUserEmail(user.email);
-        setLoggedUserId(user.uid);
+
         setLoggedUser({ userId: user.uid, userEmail: user.email });
         console.log('LOGGEDUSER userID: ', loggedUser.userId);
         updateUserContent(user.uid);
-        // getUserNameAndId(user.uid).then((data) => setLoggedUserContent(data.entries));
       } else {
         console.log('NIE JEST ZALGOWANY');
         console.log('USER NIEZALOGOWANY:', user);
-        setLoggedUserEmail(null);
-        setLoggedUserId(null);
+
         setLoggedUserContent([]);
       }
     });
@@ -46,8 +40,8 @@ function App() {
   }, []);
 
   const authData = {
-    loggedUserEmail,
-    loggedUserId,
+    // loggedUserEmail,
+    // loggedUserId,
     loggedUser,
     loggedUserContent,
     updateUserContent,
@@ -55,7 +49,7 @@ function App() {
 
   const UnauthenticatedApp = () => (
     <Router>
-      <Navbar loggedUserEmail={loggedUserEmail} />
+      <Navbar loggedUserEmail={loggedUser.userEmail} />
       <SignIn />
     </Router>
   );
@@ -65,7 +59,7 @@ function App() {
       <Router>
         {console.log('DANE Z LoggedUser:', loggedUser)}
         {console.log('DANE LOGGEDUSER z DATABASE:', loggedUserContent)}
-        <Navbar loggedUserEmail={loggedUserEmail} />
+        <Navbar loggedUserEmail={loggedUser.userEmail} />
         <Switch>
           <Route exact path="/">
             <Dashboard />
