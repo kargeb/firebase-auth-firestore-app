@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { db, mergeArray } from '../../../fbaseConfig';
-import { getUserNameAndId } from '../../database/firestoreHandlers';
-import { AuthContext } from '../../../App';
+import { AuthContext } from '../../../context';
 
 const UserContent = () => {
   const fromContext = useContext(AuthContext);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AuthContext } from './context';
 
 import { auth } from './fbaseConfig';
 import Navbar from './components/Navbar';
@@ -9,8 +10,6 @@ import SignIn from './components/pages/signIn/SignIn';
 import UserDetails from './components/pages/userDetails/UserDetails';
 import UserContent from './components/pages/userContent/UserContent';
 import { getUserNameAndId } from './components/database/firestoreHandlers';
-
-export const AuthContext = React.createContext();
 
 function App() {
   const [loggedUserEmail, setLoggedUserEmail] = useState(null);
@@ -39,6 +38,7 @@ function App() {
         console.log('USER NIEZALOGOWANY:', user);
         setLoggedUserEmail(null);
         setLoggedUserId(null);
+        setLoggedUserContent([]);
       }
     });
 
@@ -48,6 +48,7 @@ function App() {
   const authData = {
     loggedUserEmail,
     loggedUserId,
+    loggedUser,
     loggedUserContent,
     updateUserContent,
   };
