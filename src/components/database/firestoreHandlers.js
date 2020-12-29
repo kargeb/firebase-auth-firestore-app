@@ -8,6 +8,7 @@ export const getUserNameAndId = (uid) =>
     .then((doc) => {
       if (doc.exists) {
         console.log('USER o ID: ', uid, ' istnieje');
+        console.log('POBRANE DANE Z BAZY: ', doc.data());
         return doc.data();
       }
       console.log('USER nie istnieje taki');

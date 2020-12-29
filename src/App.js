@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AuthContext } from './context';
 
 import { auth } from './fbaseConfig';
 import Navbar from './components/Navbar';
@@ -8,12 +9,17 @@ import SignUp from './components/pages/signUp/SignUp';
 import SignIn from './components/pages/signIn/SignIn';
 import UserDetails from './components/pages/userDetails/UserDetails';
 import UserContent from './components/pages/userContent/UserContent';
-
-export const AuthContext = React.createContext();
+import { getUserNameAndId } from './components/database/firestoreHandlers';
 
 function App() {
   const [loggedUserEmail, setLoggedUserEmail] = useState(null);
   const [loggedUserId, setLoggedUserId] = useState(null);
+
+  const [loggedUser, setLoggedUser] = useState({ userId: '', userEmail: '' });
+  const [loggedUserContent, setLoggedUserContent] = useState([]);
+
+  const updateUserContent = (userID) =>
+    getUserNameAndId(userID).then((data) => setLoggedUserContent(data.entries));
 
   useEffect(() => {
     console.log('jestem w useffect');
@@ -23,10 +29,16 @@ function App() {
         console.log('JEST ZALOGOANY', user.uid);
         setLoggedUserEmail(user.email);
         setLoggedUserId(user.uid);
+        setLoggedUser({ userId: user.uid, userEmail: user.email });
+        console.log('LOGGEDUSER userID: ', loggedUser.userId);
+        updateUserContent(user.uid);
+        // getUserNameAndId(user.uid).then((data) => setLoggedUserContent(data.entries));
       } else {
         console.log('NIE JEST ZALGOWANY');
+        console.log('USER NIEZALOGOWANY:', user);
         setLoggedUserEmail(null);
         setLoggedUserId(null);
+        setLoggedUserContent([]);
       }
     });
 
@@ -36,6 +48,9 @@ function App() {
   const authData = {
     loggedUserEmail,
     loggedUserId,
+    loggedUser,
+    loggedUserContent,
+    updateUserContent,
   };
 
   const UnauthenticatedApp = () => (
@@ -48,6 +63,8 @@ function App() {
   const AuthenticatedApp = () => (
     <AuthContext.Provider value={authData}>
       <Router>
+        {console.log('DANE Z LoggedUser:', loggedUser)}
+        {console.log('DANE LOGGEDUSER z DATABASE:', loggedUserContent)}
         <Navbar loggedUserEmail={loggedUserEmail} />
         <Switch>
           <Route exact path="/">
