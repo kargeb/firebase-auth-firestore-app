@@ -9,14 +9,14 @@ import SignUp from './components/pages/signUp/SignUp';
 import SignIn from './components/pages/signIn/SignIn';
 import UserDetails from './components/pages/userDetails/UserDetails';
 import UserContent from './components/pages/userContent/UserContent';
-import { getUserNameAndId } from './components/database/firestoreHandlers';
+// import { getUserNameAndId } from './components/database/firestoreHandlers';
 
 function App() {
   const [loggedUser, setLoggedUser] = useState({ userId: '', userEmail: '' });
   const [loggedUserContent, setLoggedUserContent] = useState([]);
 
-  const updateUserContent = (userID) =>
-    getUserNameAndId(userID).then((data) => setLoggedUserContent(data.entries));
+  // const updateUserContent = (userID) =>
+  //   getUserNameAndId(userID).then((data) => setLoggedUserContent(data.entries));
 
   useEffect(() => {
     console.log('jestem w useffect');
@@ -26,7 +26,7 @@ function App() {
         console.log('JEST ZALOGOANY', user.uid);
         setLoggedUser({ userId: user.uid, userEmail: user.email });
         console.log('LOGGEDUSER userID: ', loggedUser.userId);
-        updateUserContent(user.uid);
+        // updateUserContent(user.uid);
       } else {
         console.log('NIE JEST ZALGOWANY');
         console.log('USER NIEZALOGOWANY:', user);
@@ -53,7 +53,7 @@ function App() {
   const authData = {
     loggedUser,
     loggedUserContent,
-    updateUserContent,
+    // updateUserContent,
   };
 
   const UnauthenticatedApp = () => (
