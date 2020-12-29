@@ -8,12 +8,16 @@ import SignUp from './components/pages/signUp/SignUp';
 import SignIn from './components/pages/signIn/SignIn';
 import UserDetails from './components/pages/userDetails/UserDetails';
 import UserContent from './components/pages/userContent/UserContent';
+import { getUserNameAndId } from './components/database/firestoreHandlers';
 
 export const AuthContext = React.createContext();
 
 function App() {
   const [loggedUserEmail, setLoggedUserEmail] = useState(null);
   const [loggedUserId, setLoggedUserId] = useState(null);
+
+  const [loggedUser, setLoggedUser] = useState({ userId: '', userEmail: '' });
+  const [loggedUserContent, setLoggedUserContent] = useState([]);
 
   useEffect(() => {
     console.log('jestem w useffect');
@@ -23,8 +27,12 @@ function App() {
         console.log('JEST ZALOGOANY', user.uid);
         setLoggedUserEmail(user.email);
         setLoggedUserId(user.uid);
+        setLoggedUser({ userId: user.uid, userEmail: user.email });
+        console.log('LOGGEDUSER userID: ', loggedUser.userId);
+        getUserNameAndId(user.uid).then((data) => setLoggedUserContent(data.entries));
       } else {
         console.log('NIE JEST ZALGOWANY');
+        console.log('USER NIEZALOGOWANY:', user);
         setLoggedUserEmail(null);
         setLoggedUserId(null);
       }
@@ -36,6 +44,7 @@ function App() {
   const authData = {
     loggedUserEmail,
     loggedUserId,
+    loggedUserContent,
   };
 
   const UnauthenticatedApp = () => (
@@ -48,6 +57,8 @@ function App() {
   const AuthenticatedApp = () => (
     <AuthContext.Provider value={authData}>
       <Router>
+        {console.log('DANE Z LoggedUser:', loggedUser)}
+        {console.log('DANE LOGGEDUSER z DATABASE:', loggedUserContent)}
         <Navbar loggedUserEmail={loggedUserEmail} />
         <Switch>
           <Route exact path="/">
