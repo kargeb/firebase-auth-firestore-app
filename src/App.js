@@ -38,7 +38,14 @@ function App() {
     loggedUserId,
   };
 
-  return (
+  const UnauthenticatedApp = () => (
+    <Router>
+      <Navbar loggedUserEmail={loggedUserEmail} />
+      <SignIn />
+    </Router>
+  );
+
+  const AuthenticatedApp = () => (
     <AuthContext.Provider value={authData}>
       <Router>
         <Navbar loggedUserEmail={loggedUserEmail} />
@@ -62,6 +69,8 @@ function App() {
       </Router>
     </AuthContext.Provider>
   );
+
+  return <div>{auth.currentUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}</div>;
 }
 
 export default App;
